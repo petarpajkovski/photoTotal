@@ -1,0 +1,114 @@
+body {
+    background: #adadad;
+    font-family: "Trebuchet MS", sans-serif;
+
+}
+
+/*   COLORS:       */
+/*   1. #353C45 - GRAY    */
+/*   2. #2C97DE - BLUE   */
+/*   3. #EEEEEE - WHITE(Secondary)   */
+/*   4. #FFFFFF - WHITE   */
+/*   5. #DC3545 - RED   */
+
+/*NAVBAR*/
+
+.navbar {
+    padding: 0;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+a.navbar-brand img{
+    height: 50px;
+    filter: brightness(80%);
+}
+
+.navbar li {
+    margin: 0 10px 0 10px;
+}
+
+#nav-cart{
+    height: 30px;
+    filter: brightness(60%);
+}
+
+.ms-n5{
+    margin-left: -40px;
+    color: #6c757d;
+}
+
+.ms-n5:hover{
+    color: #353C45 ;
+}
+
+/*HOMEPAGE*/
+
+div.bg-image{
+    background-image: url('../static/images/design/homepage_cover_2.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+div.c-item{
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat no-repeat;
+    width: 100%;
+    height: 540px;
+    border-radius: 8px;
+}
+
+div.homepage-img{
+    background-image: url("../static/images/design/homepage_img_1.jpg");
+    filter: brightness(80%);
+    background-size: cover;
+    background-position: center center;
+    height: 350px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+/*FOOTER*/
+footer a{
+    text-decoration: none;
+}
+
+
+/*CARDS*/
+.card:not(#cart-card):hover {
+    scale: 1.015;
+    transition: 250ms;
+}
+
+/*PRODUCTS*/
+div.product-img{
+    background: #ffffff;
+    border: 1px solid #777777;
+    border-radius: 5px;
+    width: 100%;
+    height: 90%;
+}
+
+div.product-img img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/*CART*/
+.cart-section{
+    background: #ffffff;
+    border-radius: 5px;
+}
+
+
+/*PROFILE*/
+
+div.profile_info{
+    background-color: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 5px;
+
+}

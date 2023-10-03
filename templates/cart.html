@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% load static %}
+
+    <div class="container mt-5 mb-5">
+        <h2>Your Cart</h2>
+        <br>
+        <div class="row">
+            <div class="col-8">
+                {% for item in items %}
+                    <div class="card mb-2" style="max-width: 100%" id="cart-card">
+                        <div class="row g-0">
+                            <div class="col-md-4 g-0">
+                                {% if user.is_authenticated %}
+                                    <img src="{{ item.product.image.url }}"
+                                         class="img-fluid rounded-start"
+                                         alt="...">
+                                {% else %}
+                                    <img src="{{ item.product.image }}"
+                                         class="img-fluid rounded-start"
+                                         alt="...">
+                                {% endif %}
+                            </div>
+                            <div class="col-md-8 h-auto">
+                                <div class="card-body ms-5 h-100">
+                                    <div class="row h-50">
+                                        <h2 class="card-title"><b>{{ item.product.brand }} {{ item.product.name }}</b></h2>
+                                        <h4 class="card-text">{{ item.product.card_title }}</h4>
+                                    </div>
+                                    <div class="row ms-5 h-50">
+                                        <div class="col-6 mt-auto">
+                                            <h4>USD ${{ item.product.price }}</h4>
+                                        </div>
+                                        <div class="col-6 mt-auto">
+                                            <h4 class="text-end">
+                                                <a href="#" data-product="{{ item.product.id }}" data-action="remove"
+                                                   class="update-cart">
+                                                    <img src="{{ BASE_DIR }}/static/images/design/delete_icon.png"
+                                                         alt="Delete"
+                                                         style="height: 35px">
+                                                </a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-4 text-center">
+                <section class="cart-section p-3">
+                    <h2>Cart Summary</h2>
+                    <br>
+                    {% for item in items %}
+                        <div class="row">
+                            <div class="col-6 text-start">
+                                <h4>{{ item.product.name }}</h4>
+                            </div>
+                            <div class="col-6 text-end">
+                                <h4>USD ${{ item.product.price }}</h4>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <hr>
+                    <div class="row">
+                        <div class="col-6 text-start">
+                            <h4>Total</h4>
+                        </div>
+                        <div class="col-6 text-end">
+                            <h4>USD ${{ order.get_cart_total }}</h4>
+                        </div>
+                    </div>
+                    <a href="{% url 'checkout' %}" class="btn btn-danger mt-5 w-75" style="border-radius: 20px">CHECK
+                        OUT</a>
+
+                </section>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

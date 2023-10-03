@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="container w-50 mt-5 mb-5">
+        <form action="#">
+
+            {#        Authenticated User            #}
+            {% if user.is_authenticated %}
+                <div class="row">
+                    <div class="col">
+                        <label for="first_name">First Name</label>
+                        <input type="text" class="form-control" id="first_name" value="{{ user.first_name }}">
+                    </div>
+                    <div class="col">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" class="form-control" id="last_name" value="{{ user.last_name }}">
+                    </div>
+                </div>
+                <label for="email">Email</label>
+                <input type="email" class="form-control w-75" id="email" value="{{ user.email }}">
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <label for="street_addr">Street Address</label>
+                        <input type="text" class="form-control" id="street_addr">
+                    </div>
+                    <div class="col">
+                        <label for="region">Region</label>
+                        <input type="text" class="form-control" id="region">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="zip_code">Postal/Zip Code</label>
+                        <input type="text" class="form-control" id="first_name">
+                    </div>
+                    <div class="col">
+                        <label for="country">Country</label>
+                        <input type="text" class="form-control" id="country">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <label for="cardholder">Cardholder Name</label>
+                        <input type="text" class="form-control" id="cardholder">
+                    </div>
+                    <div class="col">
+                        <label for="card_num">Card Number</label>
+                        <input type="text" class="form-control" id="card_num">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="end_date">Expiration Date</label>
+                        <div class="row">
+                            <input type="number" class="form-control w-25 ms-2" id="end_date" placeholder="MM">
+                            <input type="number" class="form-control w-25 ms-2" id="end_date" placeholder="YYYY">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label for="cvv">CVV</label>
+                        <input type="number" class="form-control w-25" id="cvv">
+                    </div>
+                </div>
+
+                {#      Not Usthenticated User          #}
+            {% else %}
+                <div class="row">
+                    <div class="col">
+                        <label for="first_name">First Name</label>
+                        <input type="text" class="form-control" id="first_name">
+                    </div>
+                    <div class="col">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" class="form-control" id="last_name">
+                    </div>
+                </div>
+                <label for="email">Email</label>
+                <input type="email" class="form-control w-75" id="email">
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <label for="street_addr">Street Address</label>
+                        <input type="text" class="form-control" id="street_addr">
+                    </div>
+                    <div class="col">
+                        <label for="region">Region</label>
+                        <input type="text" class="form-control" id="region">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="zip_code">Postal/Zip Code</label>
+                        <input type="text" class="form-control" id="first_name">
+                    </div>
+                    <div class="col">
+                        <label for="country">Country</label>
+                        <input type="text" class="form-control" id="country">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <label for="cardholder">Cardholder Name</label>
+                        <input type="text" class="form-control" id="cardholder">
+                    </div>
+                    <div class="col">
+                        <label for="card_num">Card Number</label>
+                        <input type="text" class="form-control" id="card_num">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="end_date">Expiration Date</label>
+                        <div class="row">
+                            <input type="number" class="form-control w-25 ms-2" id="end_date" placeholder="MM">
+                            <input type="number" class="form-control w-25 ms-2" id="end_date" placeholder="YYYY">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label for="cvv">CVV</label>
+                        <input type="number" class="form-control w-25" id="cvv" >
+                    </div>
+                </div>
+            {% endif %}
+
+            <section class="mt-5 text-end">
+                <a href="{% url 'get_homepage' %}" class="btn btn-danger w-25"
+                   style="border-radius: 25px">Pay Now</a>
+            </section>
+        </form>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+    {% load static %}
+
+    <div class="container-fluid mt-5">
+        <div class="row row-cols-2 row-cols-md-5 g-2 mb-3">
+            {% for lens in lenses %}
+                <div class="col">
+                    <a href="{% url 'product_page' pk=lens.id %}"
+                       class="text-decoration-none text-dark text-center pt-4">
+                        <div class="card h-100">
+                            <img src="{{ lens.image.url }}" class="card-img-top pb-0" alt="Camera Image"/>
+                            <div class="card-body d-flex flex-column">
+                                <h4><b>{{ lens.brand }} {{ lens.name }}</b></h4>
+                                <h5>{{ lens.card_title }}</h5>
+                                <br>
+                                <h5 class="mt-auto">USD ${{ lens.price }}</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

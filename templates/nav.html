@@ -1,0 +1,85 @@
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+
+    <div class="container-fluid ps-4 pe-4">
+        <a class="navbar-brand" href="{% url 'get_homepage' %}">
+            <img src="{{ BASE_DIR }}/static/images/design/logo.png" alt="Photo Total">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse offset-1" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-lg-0 w-100">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'camera_page' %}">CAMERAS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'lens_page' %}">LENSES</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accessories_page' %}">ACCESSORIES</a>
+                </li>
+
+{#            :TODO     #}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link" href="{% url 'photos' %}">PHOTOS</a>#}
+{#                </li>#}
+                {% if not user.is_superuser %}
+                    <li class="nav-item ms-lg-auto">
+                        <form action="{% url 'search' %}" method="POST"
+                              style="height: 100%; display: flex; align-items: center">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <input class="form-control border-end-0 border rounded-pill" type="search"
+                                       placeholder="search"
+                                       name="searched"
+                                       id="search-input">
+                                <span class="input-group-append">
+                            <button class="btn bg-white border-bottom-0 border rounded-pill ms-n5"
+                                    type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                            </div>
+                        </form>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'cart' %}" style="height: 100%; display: flex; align-items: center">
+                            <img src="{{ BASE_DIR }}/static/images/design/cart_icon.png" alt="" id="nav-cart">
+                        </a>
+                    </li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                        <li class="ms-lg-auto"><a class="nav-link" href="#"
+                                                  style="font-weight: bold; color: #DC3545">{{ user.get_username }}</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                ADD
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a href="{% url 'add_brand' %}" class="dropdown-item">ADD BRAND</a></li>
+                                <li><a href="{% url 'admin_camera' %}" class="dropdown-item">ADD CAMERA</a></li>
+                                <li><a href="{% url 'admin_lenses' %}" class="dropdown-item">ADD LENS</a></li>
+                                <li><a href="{% url 'admin_accessories' %}" class="dropdown-item">ADD ACCESSORIES</a>
+                                </li>
+                            </ul>
+                        </li>
+                    {% else %}
+{#                        :TODO     #}
+                        <li class="ms-md-2"><a class="nav-link" href="#"
+                                               style="font-weight: bold; color: #2C97DE">{{ user.get_username }}</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Log Out</a></li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log In</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+</nav>

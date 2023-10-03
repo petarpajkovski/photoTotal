@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+    <div class="container-fluid mt-5">
+        <div class="row g-2 mb-3">
+            {% for prod in products %}
+                <div class="col-lg-3 col-sm-6">
+                    <a href="{% url 'product_page' pk=prod.id %}"
+                       class="text-decoration-none text-dark text-center pt-4">
+                        <div class="card h-100">
+                            <img src="{{ prod.image.url }}" class="card-img-top pb-0" alt="Camera Image"/>
+                            <div class="card-body d-flex flex-column">
+                                <h4><b>{{ prod.brand }} {{ prod.name }}</b></h4>
+                                <h5>{{ prod.card_title }}</h5>
+                                <br>
+                                <h5 class="mt-auto">USD ${{ prod.price }}</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

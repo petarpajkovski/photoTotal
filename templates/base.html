@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Photo Total</title>
+    <link rel="icon" href="{{ BASE_DIR }}/static/images/design/tab_logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ BASE_DIR }}/static/bootstrap-5.2.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ BASE_DIR }}/static/style.css">
+
+    <script type="text/javascript">
+        let user = '{{ request.user }}'
+
+        function getToken(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        let csrftoken = getToken('csrftoken');
+
+
+        function getCookie(name){
+            let cookieArr = document.cookie.split(";");
+
+            for(let i=0; i<cookieArr.length; i++){
+                let cookiePair = cookieArr[i].split("=");
+
+                if(name == cookiePair[0].trim()){
+                    return decodeURIComponent(cookiePair[1])
+                }
+            }
+            return null;
+        }
+        let cart = JSON.parse(getCookie('cart'))
+        if(cart == undefined){
+            cart = {}
+            document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+        }
+        console.log(cart)
+    </script>
+
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+
+{% include 'nav.html' %}
+
+{% block content %}
+
+{% endblock content %}
+
+{% include 'footer.html' %}
+
+<script src="{{ BASE_DIR }}/static/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="{{ BASE_DIR }}/static/js/cart.js"></script>
+</body>
+</html>

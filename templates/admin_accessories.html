@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="container-fluid mt-5 mb-5">
+        <div class="row text-center">
+            <h2 class="mb-3">ACCESSORIES</h2>
+
+            <div class="col-md-4 col-sm-6">
+                <img src="../photoTotal/static/images/design/add_accessories_cover.png" alt="" class="w-75">
+            </div>
+
+            <div class="col-md-3 col-sm-6 text-start">
+                <form method="POST" action="{% url 'add_accessories' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="text-end mt-2">
+                        <button type="submit" class="btn btn-secondary btn-block w-50">ADD</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-4 col-sm-12 ms-5">
+                <table class="table table-striped table-dark border-secondary">
+                    <tr>
+                        <th>Brand</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                    {% for accessory in accessories %}
+                        <tr>
+                            <td>{{ accessory.brand.name }}</td>
+                            <td>{{ accessory.name }}</td>
+                            <td>{{ accessory.price }}</td>
+                            <td><a href="{% url 'delete_accessories' accessory.id %}"
+                                   class="btn btn-danger">DELETE</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

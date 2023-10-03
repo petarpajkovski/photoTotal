@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load static %}
+
+    <div class="container mt-5 mb-5">
+        <div class="row">
+
+            <div class="col-lg-4 col-sm-1 pt-3 profile_info">
+                <h3>Your Profile:</h3>
+                <h5><b>Username:</b> {{ user.username }}</h5>
+                <h5><b>First Name:</b> {{ user.first_name }}</h5>
+                <h5><b>Last Name:</b> {{ user.last_name }}</h5>
+                <h5><b>Email:</b> {{ user.email }}</h5>
+            </div>
+
+            <div class="col-lg-8 col-sm-1">
+                <a href="{% url 'add_photo' %}" class="btn btn-secondary">Add Photo</a>
+                {% for photo in photos %}
+                    <div class="card mb-2" style="max-width: 100%" id="cart-card">
+                        <div class="row g-0">
+                            <div class="col-md-4 g-0">
+                                <img src="{{ photo.image.url }}"
+                                     class="img-fluid rounded-start"
+                                     alt="...">
+                            </div>
+                            <div class="col-md-8 h-auto">
+                                <div class="card-body ms-5 h-100">
+                                    <div class="row h-50">
+                                        <h2 class="card-title"><b>{{ photo.title }}</b></h2>
+                                        <h4 class="card-text">{{ photo.taken_with }}</h4>
+                                        <p>{{ photo.description }}</p>
+                                    </div>
+                                    <div class="row ms-5">
+                                        <div class="col">
+                                            <a href="{% url 'user_photo_delete' pk=photo.id %}"
+                                               class="btn btn-danger">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
